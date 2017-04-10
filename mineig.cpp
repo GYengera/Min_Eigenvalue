@@ -11,7 +11,7 @@ using namespace Eigen;
 using namespace Spectra;
 using namespace std;
 
-typedef Eigen::Triplet<double> Trip;
+typedef Triplet<double> Trip;
 
 int main(int argc, char* argv[])
 {
