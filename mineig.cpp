@@ -38,6 +38,8 @@ int main(int argc, char* argv[])
 	Q.setFromTriplets(coefficients.begin(), coefficients.end());
 	
 	//Define the required eigen solver using SPECTRA
+	//Q matrix is sparse and symmetric 
+	//The Shift Solver is used (with sigma = 0) as it is the preferred for minimum eigenvalue computation
 	SparseSymShiftSolve<double> op(Q);
 	SymEigsShiftSolver< double, LARGEST_ALGE, SparseSymShiftSolve<double> > eigs(&op, 1, 10, 0.0);
 	eigs.init();
@@ -45,11 +47,11 @@ int main(int argc, char* argv[])
 	VectorXd evalue, eigvec;	
 	if(eigs.info() == SUCCESSFUL){
 		evalue = eigs.eigenvalues();
-		cout << evalue << endl;
+		cout << evalue << endl; //Minimum eigenvalue is displayed
 		eigvec = eigs.eigenvectors();	
 	}
 
-	//save the eigenvector to a file
+	//Saving the eigenvector to a file
 	ofstream outfile;
 	outfile.open("/home/gaurav/eigen_vector.txt"); //Required path should be defined here
 	if(!outfile) {
