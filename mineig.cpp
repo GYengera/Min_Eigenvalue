@@ -34,7 +34,7 @@ int main(int argc, char* argv[])
 		coefficients.push_back(Trip(row-1,col-1,value));
 	}
 	input.close();
-	Eigen::SparseMatrix<double> Q(ND,ND);
+	SparseMatrix<double> Q(ND,ND);
 	Q.setFromTriplets(coefficients.begin(), coefficients.end());
 	
 	//Define the required eigen solver using SPECTRA
