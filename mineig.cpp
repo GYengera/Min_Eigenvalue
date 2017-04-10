@@ -39,7 +39,7 @@ int main(int argc, char* argv[])
 	
 	//Define the required eigen solver using SPECTRA
 	//Q matrix is sparse and symmetric 
-	//The Shift Solver is used (with sigma = 0) as it is the preferred for minimum eigenvalue computation
+	//The Shift Solver is used (with sigma = 0) as it is the preferred method for minimum eigenvalue computation
 	SparseSymShiftSolve<double> op(Q);
 	SymEigsShiftSolver< double, LARGEST_ALGE, SparseSymShiftSolve<double> > eigs(&op, 1, 10, 0.0);
 	eigs.init();
